@@ -68,11 +68,15 @@
     "@dcloudio/uni-stacktracey": "^2.0.1-35320220729002",
     "@dcloudio/uni-stat": "^2.0.1-35320220729002",
     "@vue/shared": "^3.0.0",
+    "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
+    "dayjs": "^1.11.5",
     "flyio": "^0.6.2",
     "regenerator-runtime": "^0.12.1",
+    "uview-ui": "^2.0.31",
     "vue": "^2.6.11",
-    "vuex": "^3.2.0"
+    "vuex": "^3.2.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/runtime": "~7.17.9",
@@ -95,6 +99,9 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss-comment": "^2.0.0",
+    "puppeteer": "^14.0.0",
+    "sass": "^1.54.5",
+    "sass-loader": "^10.3.1",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

@@ -1,4 +1,4 @@
-# my-project
+# Go-Store
 
 ## Project setup
 ```
