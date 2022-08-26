@@ -52,7 +52,7 @@
 		getBannerList,
 		getSpecialList,
 		getTabs
-	} from '../../api/home.js'
+	} from '@/api/home'
 	import QSTabsWxsList from '@/components/QS-tabs-wxs-list/QS-tabs-wxs-list.vue';
 	const {
 		windowHeight

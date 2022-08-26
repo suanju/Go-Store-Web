@@ -67,6 +67,7 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.1-35320220729002",
     "@dcloudio/uni-stacktracey": "^2.0.1-35320220729002",
     "@dcloudio/uni-stat": "^2.0.1-35320220729002",
+    "@types/uni-app": "^1.4.4",
     "@vue/shared": "^3.0.0",
     "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
@@ -80,7 +81,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "~7.17.9",
-    "@dcloudio/types": "^3.0.4",
+    "@dcloudio/types": "^3.0.13",
     "@dcloudio/uni-automator": "^2.0.1-35320220729002",
     "@dcloudio/uni-cli-i18n": "^2.0.1-35320220729002",
     "@dcloudio/uni-cli-shared": "^2.0.1-35320220729002",

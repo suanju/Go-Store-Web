@@ -37,7 +37,7 @@
 					<view v-for="item in cateList" :key="item.id">
 						<view class="cate-item b-b two">{{item.name}}</view>
 						<view v-for="tItem in item.child" :key="tItem.id" class="cate-item b-b"
-							:class="{active: tItem.id==cateId}" @click="changeCate(tItem)">
+                  :class="{active: tItem.id === cateId}" @click="changeCate(tItem)">
 							{{tItem.name}}
 						</view>
 					</view>
@@ -164,7 +164,7 @@
 					this.loadingType = 'more'
 				}
 				try {
-					let httpData = { 
+					let httpData = {
 						level: 3,
 						pid: Number(this.cateId),
 						page: 1,
