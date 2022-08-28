@@ -1,5 +1,6 @@
 import _app from '@/util/request/app.js';
 import interfaces from '@/util/request/interfaces.js';
+import {getTabsInfo} from '@/api/home.js'
 import { mock } from './mock.js';
 
 export function QSRequest({
@@ -17,7 +18,7 @@ export function QSRequest({
 		const url = getField(interfaces, urlField);
 		//为了便于示例
 		let fn;
-		if(mock) {
+		if(!mock) {
 			fn = mock;
 		}else{
 			fn = request;
@@ -37,7 +38,9 @@ export function QSRequest({
 				})
 			}
 			if (checkResult) {
-				const data = getField(res, field);
+				// const data = getField(res, field);
+				const data = res;
+				console.log(data)
 				resolve(hasFilterFn ? filterFn(data) : data);
 			} else {
 				reject(res);
@@ -60,11 +63,7 @@ function checkRes(obj) {	//对于返回数据的健壮性判断
 		switch (type) {
 			case 'msgAndCode':
 				if (res) {
-					if (res.msg === 'success' && res.code === 0) {
-						return true;
-					} else {
-						return false;
-					}
+					return res.message === 'success' && res.code === 200;
 				} else {
 					return false;
 				}
@@ -103,39 +102,41 @@ function request(obj) {
 	// let _this = this;
 	// return new Promise((resolve, reject) => {
 	// 	try {
-	// 		const config = {
-	// 			header: {}
-	// 		};
-	// 		if (obj.contentType === 'json') {
-	// 			config.header['Content-type'] = 'application/json'
-	// 		} else {
-	// 			config.header['Content-type'] = 'application/x-www-form-urlencoded'
-	// 		}
-	// 		if (!obj.method) {
-	// 			obj.method = 'GET'
-	// 		}
-	// 		_app.log(
-	// 			`访问接口 url: ${obj.url}, data: ${JSON.stringify(obj.data)}, method: ${obj.method}, header: ${JSON.stringify(config.header)}`
-	// 		);
-	// 		uni.request({
-	// 			...obj,
-	// 			...config,
-	// 			success(res) {
-	// 				if (res.statusCode === 200) {
-	// 					resolve(res.data);
-	// 				}else{
-	// 					reject(res);
-	// 				}
-	// 			},
-	// 			fail(err) {
-	// 				reject(err)
-	// 			}
-	// 		});
+	// 		let res = getTabsInfo(obj.data)
+	// 		resolve(res.data);
+	// 		// const config = {
+	// 		// 	header: {}
+	// 		// };
+	// 		// if (obj.contentType === 'json') {
+	// 		// 	config.header['Content-type'] = 'application/json'
+	// 		// } else {
+	// 		// 	config.header['Content-type'] = 'application/x-www-form-urlencoded'
+	// 		// }
+	// 		// if (!obj.method) {
+	// 		// 	obj.method = 'GET'
+	// 		// }
+	// 		// _app.log(
+	// 		// 	`访问接口 url: ${obj.url}, data: ${JSON.stringify(obj.data)}, method: ${obj.method}, header: ${JSON.stringify(config.header)}`
+	// 		// );
+	// 		// uni.request({
+	// 		// 	...obj,
+	// 		// 	...config,
+	// 		// 	success(res) {
+	// 		// 		if (res.statusCode === 200) {
+	// 		// 			resolve(res.data);
+	// 		// 		}else{
+	// 		// 			reject(res);
+	// 		// 		}
+	// 		// 	},
+	// 		// 	fail(err) {
+	// 		// 		reject(err)
+	// 		// 	}
+	// 		// });
 	// 	} catch (e) {
 	// 		//TODO handle the exception
+	//
 	// 		reject(e)
 	// 	}
 	// })
-	
-	console.log()
+	 return  getTabsInfo(obj.data)
 }

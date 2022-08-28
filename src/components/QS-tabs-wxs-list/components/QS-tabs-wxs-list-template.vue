@@ -17,10 +17,17 @@
 						</view>
 					</block>
 				</block>
+        <block v-if="type === 'goods'">
+          <view class="width100">
+            <homeTabsGoods ref="component" :tab="tab" :index="index" :current="current" :type="type" :show="getShow"
+                         :readyRefresh="readyRefresh" @refreshEnd="refreshEnd"
+                         @toOldScrollTop="toOldScrollTop" :refreshDistance="refreshDistance" :customData="customData"></homeTabsGoods>
+          </view>
+        </block>
 				<block v-else>
 					<view class="width100">
 						<defTemplate ref="component" :tab="tab" :index="index" :current="current" :type="type" :show="getShow"
-						 :readyRefresh="readyRefresh" @refreshEnd="refreshEnd" 
+						 :readyRefresh="readyRefresh" @refreshEnd="refreshEnd"
 						 @toOldScrollTop="toOldScrollTop" :refreshDistance="refreshDistance" :customData="customData"></defTemplate>
 					</view>
 				</block>
@@ -35,7 +42,7 @@
 	// 首页tabbar模板
 	import swiperTemplate from './components/QS-tabs-list-home-swiper.vue';
 	import vShowTemplate from './components/QS-tabs-list-home-vShow.vue';
-
+  import homeTabsGoods from './components/home-tabs-goods';
 
 
 	// 组件必须
@@ -46,7 +53,8 @@
 		components: {
 			defTemplate,
 			swiperTemplate,
-			vShowTemplate
+			vShowTemplate,
+      homeTabsGoods
 		},
 
 		mixins: [QSTabsWxsListMixin()], // 组件必须

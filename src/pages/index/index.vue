@@ -41,8 +41,8 @@
 
 		<view>
 			<!-- 使用组件并绑定ref, 动态绑定height属性 -->
-			<QSTabsWxsList ref="QSTabsWxsList" hasRefresh contentMode="vShow" refreshImage="/static/refresh.png"
-				minWidth="152rpx" type="setColor" :height="QSTabsWxsListHeight"></QSTabsWxsList>
+			<QSTabsWxsList ref="QSTabsWxsList" hasRefresh  refreshImage="/static/refresh.png"
+				minWidth="152rpx" type="goods" :height="QSTabsWxsListHeight"></QSTabsWxsList>
 		</view>
 	</view>
 </template>

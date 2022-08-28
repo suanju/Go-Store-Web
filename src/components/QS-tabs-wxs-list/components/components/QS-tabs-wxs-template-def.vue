@@ -1,7 +1,6 @@
 <!-- 该组件需自行实现, 此处只是示例 -->
 <template>
 	<!-- 为性能缘故, 当tab项多时, 请尽量不要删除 v-if="show" -->
-	
 	<view v-if="show">
 		<QSMasonry :list="list" hasImage padding="0" @updated="updated"></QSMasonry>
 		<!-- 列表状态展示 -->
@@ -153,14 +152,14 @@
 		flex-direction: row;
 		margin-bottom: 35rpx;
 	}
-	
+
 	.scroll-item-image {
 		background-color: #F8F8F8;
 		border-radius: 8px;
 		height: 220rpx;
 		width: 40%;
 	}
-	
+
 	.scroll-item-text {
 		width: 55%;
 		display: flex;
@@ -170,7 +169,7 @@
 		font-size: 16px;
 		color: #666;
 	}
-	
+
 	.statusText {
 		height: 40px;
 		width: 100%;

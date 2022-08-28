@@ -1,4 +1,4 @@
-export const STATES = 1  //状态 0 测试 1 正式 
+export const STATES = 0  //状态 0 测试 1 正式
 
 export const TEST_API = "http://127.0.0.1:8080/"  //正式API
 

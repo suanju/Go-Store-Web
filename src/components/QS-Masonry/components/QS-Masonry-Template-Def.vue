@@ -3,8 +3,8 @@
 		<!-- <view class="image-box">
 			<image src="/static/logo.png" mode="aspectFill" class="image"></image>
 		</view> -->
-		<image :src="listItem.img" mode="widthFix" class="img" @load="imgLoaded" @error="imgLoaded"></image>
-		<text class="text">{{listItem.text}}</text>
+		<image :src="listItem.image" mode="widthFix" class="img" @load="imgLoaded" @error="imgLoaded"></image>
+		<text class="text">{{listItem.title}}</text>
 	</view>
 </template>
 
@@ -59,7 +59,7 @@
 		height: 100%;
 		width: 100%;
 		border-top-left-radius: 20rpx;
-		border-top-right-radius: 20rpx; 
+		border-top-right-radius: 20rpx;
 	}
 	.img{
 		width: 100%;

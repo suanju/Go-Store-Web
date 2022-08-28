@@ -1,8 +1,8 @@
 <template>
 	<view class="QS-Masonry-Template">
 		<view :id="pre_id + index" :style="{ 'margin-bottom': itemSpace }" v-for="(item, index) in (String(hideTem) === 'true'?hideList:list)" :key="index">
-			<block v-if="type==='xxx'">
-				
+			<block v-if="type==='goods'">
+        <HomeTabsGood :listItem="item" :type="type" @imgLoaded="imgLoaded"></HomeTabsGood>
 			</block>
 			<block v-else>
 				<def :listItem="item" :type="type" @imgLoaded="imgLoaded"></def>
@@ -13,8 +13,9 @@
 
 <script>
 	import def from './components/QS-Masonry-Template-Def.vue';
+  import HomeTabsGood from './components/home-tabs-goods';
 	export default {
-		components: {def},
+		components: {def,HomeTabsGood},
 		props: {
 			list: {
 				type: Array,
@@ -48,8 +49,8 @@
 		methods: {
 			setHideList(arr, cb) {
 				this.hideList = arr;
-				if(cb && typeof cb === 'function') this.cb = cb;
-				if(String(this.hasImage) !== 'true') {
+				if(cb && typeof cb === 'function') this.cb = cb ;
+				if(String(this.hasImage) === 'true') {
 					this.$nextTick(()=>{
 						setTimeout(()=>{
 							this.allImgLoaded();
@@ -61,6 +62,7 @@
 				this.hideList = [];
 			},
 			imgLoaded() {
+
 				if(String(this.hideTem) === 'true' && String(this.hasImage) === 'true') {
 					if(++this.imgLoadedCount >= this.hideList.length) {
 						this.imgLoadedCount = 0;
@@ -83,16 +85,16 @@
 							// #ifndef MP-ALIPAY
 							view = uni.createSelectorQuery().in(this);
 							// #endif
-							
+
 							let l = 0;
 							if(String(this.hideTem) === 'true') {
 								l = this.hideList.length;
 							}else{
 								l = this.list.length;
 							}
-								
+
 							for(let i = 0; i < l; i++) view.select(`#${this.pre_id + i}`).fields({size: true})
-							
+
 							view.exec(data =>{
 								rs(data);
 							})
@@ -111,9 +113,9 @@
 							// #ifndef MP-ALIPAY
 							view = uni.createSelectorQuery().in(this);
 							// #endif
-							
+
 							view.select(`.QS-Masonry-Template`).fields({size: true})
-							
+
 							view.exec(data =>{
 								rs(data[0]);
 							})

@@ -74,8 +74,8 @@ function mock({url, data} = {}) {
 
 function getData(data, pno, psize) {
 	const obj = {
-		msg: 'success',
-		code: 0
+		message: 'success',
+		code: 200
 	};
 	const page = {};
 	let size = data.length;
@@ -89,6 +89,8 @@ function getData(data, pno, psize) {
 	d = JSON.parse(JSON.stringify(d));
 	page.list = d;
 	obj.page = page;
+
+	console.log(obj)
 	return obj;
 }
 

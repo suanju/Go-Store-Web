@@ -34,25 +34,25 @@ function doPageDemand(obj) {	//分页加载获取数据方法, 页面使用call�
 		success, //接口访问成功回调
 		successEnd, //成功回调结束时
 		fail,	//接口访问失败回调
-		
+
 		sendDataName,	//携带数据字段名称
 		pageNumName,	//携带数据中的页数字段名称
 		pageSizeName,	//携带数据中的条数字段名称
-		
+
 		checkLastPageMode,	//判断是否是最后一页的逻辑标识, 用于逻辑判断, 目前默认有两个参数 size: 判断条数, page: 判断页数, 默认为size
 		newDatafields,	//接口访问成功后获取列表数据字段名称, 可用. 链式获取
 		dataLastPageName,	//接口访问成功后数据中的最大页数字段名称, 可用. 链式获取
 		sizeName,	//接口访问成功后数据中条数字段名称, 可用. 链式获取
-		
+
 		setName,	//页面中列表数据字段名称, 如果在页面中分别有两个或两个以上列表使用该js, 则页面中需区分传入, 否则可以忽略
 		statusTextName,	//页面中列表状态字段名称, 如果在页面中分别有两个或两个以上列表使用该js, 则页面中需区分传入, 否则可以忽略
 		lastPageName,	//页面中最后一页字段名称, 如果在页面中分别有两个或两个以上列表使用该js, 则页面中需区分传入, 否则可以忽略
 		waitingName,	//页面中获取数据等待字段名称, 如果在页面中分别有两个或两个以上列表使用该js, 则页面中需区分传入, 否则可以忽略
-		
+
 		refresh,	//刷新标识, 若为true则会将携带数据中的页数重置为1
 		force,	//强制标识, 若为true则会忽略等待标识为true时的跳过操作
 		doEvent,	//进入状态判断标识, 若为true则会进入判断列表status而进行相应操作
-		
+
 		noDataText,	//访问接口后若数据长度为0则可自定义为空时文字
 		refreshClear	//刷新时是否清空数据
 	} = obj;
@@ -71,8 +71,8 @@ function doPageDemand(obj) {	//分页加载获取数据方法, 页面使用call�
 					break;
 			}
 		}
-	} 
-	
+	}
+
 	//初始化默认值
 	sendDataName = sendDataName || 'sendData';
 	setName = setName || 'list';
@@ -87,12 +87,12 @@ function doPageDemand(obj) {	//分页加载获取数据方法, 页面使用call�
 	if (refresh) {	//刷新, 重置为第一页
 		_this[sendDataName][pageNumName] = 1;
 		_this[lastPageName] = undefined;	//重置最后一页状态
-		
+
 		if(refreshClear) {	//刷新是否清空数据
 			_this[setName] = [];
 		}
 	}
-	
+
 	//浅拷贝携带数据对象
 	const sendData = { ..._this[sendDataName]
 	};
@@ -123,7 +123,7 @@ function doPageDemand(obj) {	//分页加载获取数据方法, 页面使用call�
 		if(success && typeof success == 'function') success(res);
 		_app.log('page.js获取数据成功:' + JSON.stringify(res));
 		// 获取列表数据
-		const newList = getField(res, newDatafields);
+		const newList = getField(res.data, newDatafields);
 		// 判断是否存在并判断长度
 		const bl = (newList && newList.length > 0);
 		// 判断是否是第一页
@@ -145,11 +145,11 @@ function doPageDemand(obj) {	//分页加载获取数据方法, 页面使用call�
 			}
 		}
 		// 获取数据中的最后一页
-		let dataLastPageNum = getField(res, dataLastPageName);
+		let dataLastPageNum = getField(res.data, dataLastPageName);
 		if (dataLastPageNum !== undefined) {
 			dataLastPageNum = Number(dataLastPageNum);
 			// 获取数据中的条数
-			const sizeNum = Number(getField(res, sizeName));
+			const sizeNum = Number(getField(res.data, sizeName));
 			// 获取最后一页
 			let lastPageNum;
 			switch (checkLastPageMode) {
@@ -171,7 +171,7 @@ function doPageDemand(obj) {	//分页加载获取数据方法, 页面使用call�
 			// 赋值最后一页
 			_this[lastPageName] = lastPageNum;
 			_app.log('_this[lastPageName]:' + _this[lastPageName]);
-			
+
 			// 判断最后一页与是否存在数据, 赋值相应状态
 			if (sendDataPageNum <= 1 && lastPageNum <= 1 && !bl) {	//第一页并无数据
 				_app.log('noDataText:' + noDataText);

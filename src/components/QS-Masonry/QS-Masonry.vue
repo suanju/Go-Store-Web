@@ -21,15 +21,16 @@
 	} from './js/QS-Utils.js';
 
 	function getDefLists(col) {
-		const arr = [];
-		for (let i = 0; i < Number(col); i++) {
-			arr.push({
-				list: [],
-				id: String(i),
-				height: 0
-			})
-		}
-		return arr
+    const arr = [];
+    for (let i = 0; i < Number(col); i++) {
+      arr.push({
+        list: [],
+        id: String(i),
+        height: 0
+      })
+    }
+    console.log(arr)
+    return arr
 	}
 	export default {
 		components: {
@@ -146,7 +147,7 @@
 					}
 				})
 			},
-			async setData(list) {						
+			async setData(list) {
 				if(this.currentCount > 999999) this.currentCount = 0;
 				const currentCount = this.currentCount++;
 				list = JSON.parse(JSON.stringify(list))
@@ -193,9 +194,14 @@
 			},
 			async updateLists(list, currentCount) {
 				try{
+
 					if((this.currentCount - 1) === currentCount)
 					await this.updateListsHeight(currentCount);
+
+          console.log(currentCount)
+
 					const listInfo = await this.getListInfo(list, currentCount);
+
 					if((this.currentCount - 1) === currentCount) {
 						for (let i = 0; i < list.length; i++) {
 							this.addListData(list[i], listInfo[i])
@@ -217,6 +223,7 @@
 				}
 				obj.list.push(data);
 				obj.height += info === null ? 10 : info.height;
+
 			},
 			resetLists() {
 				const lists = this.lists;
@@ -251,7 +258,9 @@
 		flex-direction: row;
 	}
 
-	.col-container-item {}
+	.col-container-item {
+
+  }
 
 	.QS-hide-template {
 		opacity: 0;
